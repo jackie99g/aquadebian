@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 WORKDIR /home
 
@@ -6,27 +6,31 @@ RUN apt-get update
 
 RUN apt-get install -y build-essential gdb lcov pkg-config libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev lzma lzma-dev tk-dev uuid-dev zlib1g-dev wget uuid-runtime
 
-RUN wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+RUN wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
 
-RUN tar -xf Python-3.10.6.tgz
+RUN tar -xf Python-3.12.0.tgz
 
-WORKDIR Python-3.10.6
+RUN rm Python-3.12.0.tgz
+
+WORKDIR Python-3.12.0
 
 RUN ./configure --enable-optimizations
 
-RUN make -j 4
+RUN make -j4
 
-RUN make altinstall
+RUN make install
 
-RUN python3.10 --version
+RUN python3.12 --version
 
 WORKDIR /home
 
-RUN wget https://nodejs.org/dist/v16.16.0/node-v16.16.0.tar.gz
+RUN wget https://nodejs.org/dist/v21.2.0/node-v21.2.0.tar.gz
 
-RUN tar -xf node-v16.16.0.tar.gz
+RUN tar -xf node-v21.2.0.tar.gz
 
-WORKDIR node-v16.16.0
+RUN rm node-v21.2.0.tar.gz
+
+WORKDIR node-v21.2.0
 
 RUN ./configure
 
