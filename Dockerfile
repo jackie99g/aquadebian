@@ -2,9 +2,28 @@ FROM debian:bookworm
 
 WORKDIR /home
 
-RUN apt-get update
-
-RUN apt-get install -y build-essential gdb lcov pkg-config libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev lzma lzma-dev tk-dev uuid-dev zlib1g-dev wget uuid-runtime
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gdb \
+    lcov \
+    pkg-config \
+    libbz2-dev \
+    libffi-dev \
+    libgdbm-dev \
+    libgdbm-compat-dev \
+    liblzma-dev \
+    libncurses5-dev \
+    libreadline6-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    lzma \
+    lzma-dev \
+    tk-dev \
+    uuid-dev \
+    zlib1g-dev \
+    wget \
+    uuid-runtime \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
 
