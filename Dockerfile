@@ -27,26 +27,26 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /home
 
-RUN wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz && \
-    tar -xf Python-3.12.0.tgz && \
-    rm Python-3.12.0.tgz && \
-    cd Python-3.12.0 && \
-    ./configure --enable-optimizations && \
+RUN wget https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tgz && \
+    tar -xf Python-3.13.0.tgz && \
+    rm Python-3.13.0.tgz && \
+    cd Python-3.13.0 && \
+    ./configure --enable-optimizations  --with-lto && \
     make -j4 && \
     make install && \
-    python3.12 --version && \
+    python3.13 --version && \
     cd /home && \
-    rm -rf Python-3.12.0
+    rm -rf Python-3.13.0
 
 WORKDIR /home
 
-RUN wget https://nodejs.org/dist/v21.2.0/node-v21.2.0.tar.gz && \
-    tar -xf node-v21.2.0.tar.gz && \
-    rm node-v21.2.0.tar.gz && \
-    cd node-v21.2.0 && \
+RUN wget https://nodejs.org/dist/v22.12.0/node-v22.12.0.tar.gz && \
+    tar -xf node-v22.12.0.tar.gz && \
+    rm node-v22.12.0.tar.gz && \
+    cd node-v22.12.0 && \
     ./configure && \
     make -j4 && \
     make install && \
     node --version && \
     cd /home && \
-    rm -rf node-v21.2.0
+    rm -rf node-v22.12.0
